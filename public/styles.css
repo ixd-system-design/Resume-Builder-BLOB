@@ -2,7 +2,7 @@
 * { box-sizing: border-box; }
 body { margin: 0; }
 .layout { max-width: 760px; margin: 3rem auto; padding: 0 1rem; display: grid; gap: 1.5rem; }
-.panel, .resume { background: white; border: 1px solid #d9e1e5; border-radius: 10px; padding: clamp(1.25rem, 5vw, 2.5rem); box-shadow: 0 4px 16px #1d29350a; }
+.panel, .resume { min-width: 0; background: white; border: 1px solid #d9e1e5; border-radius: 10px; padding: clamp(1.25rem, 5vw, 2.5rem); box-shadow: 0 4px 16px #1d29350a; }
 h1, h2, h3, p { margin-top: 0; }
 h1, h2 { line-height: 1.2; margin-bottom: .5rem; }
 .eyebrow { color: #176050; font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
@@ -23,7 +23,10 @@ button.secondary { background: white; color: #176050; border: 1px solid #176050;
 #form-status { margin: .75rem 0 0; }
 .resume-header { border-bottom: 2px solid #176050; margin-bottom: 1.5rem; }
 .resume-header p:last-child { color: #52636e; }
-.experience { border-bottom: 1px solid #d9e1e5; padding-bottom: 1rem; margin-bottom: 1rem; }
+.experience { display: flex; align-items: flex-start; gap: 1rem; border-bottom: 1px solid #d9e1e5; padding-bottom: 1rem; margin-bottom: 1rem; }
+.experience-media { flex: 0 0 96px; }
+.experience-image { display: block; width: 96px; height: 96px; object-fit: cover; border-radius: 5px; }
+.experience-details { flex: 1; min-width: 0; overflow-wrap: anywhere; }
 .experience-heading { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 .experience h3, .experience .dates { margin-bottom: .25rem; }
 .dates, .employer { color: #52636e; }
@@ -34,4 +37,11 @@ button.secondary { background: white; color: #176050; border: 1px solid #176050;
 #image-status { margin: .5rem 0; }
 #remove-image { align-self: flex-start; }
 .resume-footer { color: #52636e; font-size: .875rem; margin-top: 2rem; }
-@media (max-width: 450px) { .years { grid-template-columns: 1fr; gap: 0; } }
+@media (min-width: 1024px) {
+  .layout { max-width: 1280px; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+}
+@media (max-width: 450px) {
+  .years { grid-template-columns: 1fr; gap: 0; }
+  .experience-media { flex-basis: 64px; }
+  .experience-image { width: 64px; height: 64px; }
+}

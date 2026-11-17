@@ -71,14 +71,18 @@
   </main>
   <template id="resume-item-template">
     <article class="experience">
-      <div class="experience-heading"><h3 class="job-title"></h3><p class="dates"></p></div>
-      <p class="employer"></p>
-      <p class="accomplishment"></p>
-      <img class="experience-image image-preview" width="640" height="640" alt="" hidden>
-      <p class="image-unavailable" hidden>Image unavailable.</p>
-      <div class="item-actions">
-        <button class="edit-item secondary" type="button">Edit</button>
-        <button class="delete-item secondary" type="button">Delete</button>
+      <div class="experience-media" hidden>
+        <img class="experience-image" width="96" height="96" alt="" hidden>
+        <p class="image-unavailable" hidden>Image unavailable.</p>
+      </div>
+      <div class="experience-details">
+        <div class="experience-heading"><h3 class="job-title"></h3><p class="dates"></p></div>
+        <p class="employer"></p>
+        <p class="accomplishment"></p>
+        <div class="item-actions">
+          <button class="edit-item secondary" type="button">Edit</button>
+          <button class="delete-item secondary" type="button">Delete</button>
+        </div>
       </div>
     </article>
   </template>

@@ -166,6 +166,7 @@ async function loadItems() {
       node.querySelector('.dates').textContent = `${item.start_year} – ${item.end_year ?? 'Present'}`;
       node.querySelector('.accomplishment').textContent = item.accomplishment;
       if (item.image) {
+        node.querySelector('.experience-media').hidden = false;
         const image = node.querySelector('.experience-image');
         image.alt = `Image for ${item.job_title} at ${item.employer}`;
         image.addEventListener('error', () => {
