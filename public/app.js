@@ -5,7 +5,7 @@ const resumeItems = document.querySelector('#resume-items');
 const template = document.querySelector('#resume-item-template');
 const submitButton = form.querySelector('button[type="submit"]');
 const cancelEditButton = document.querySelector('#cancel-edit');
-const fields = [...form.querySelectorAll('input[type="text"], input[type="number"], textarea')];
+const fields = [...form.querySelectorAll('input[type="text"], input[type="number"], input[type="url"], textarea')];
 const imageFile = document.querySelector('#image-file');
 const imageId = document.querySelector('#image');
 const imageCanvas = document.querySelector('#image-canvas');
@@ -32,7 +32,7 @@ function clearForm() {
   showSavedImage();
   imageStatus.textContent = '';
   imageStatus.classList.remove('error');
-  submitButton.textContent = 'Add experience';
+  submitButton.textContent = 'Save';
   cancelEditButton.hidden = true;
   for (const field of fields) {
     field.setCustomValidity('');
@@ -165,6 +165,14 @@ async function loadItems() {
       node.querySelector('.employer').textContent = item.employer;
       node.querySelector('.dates').textContent = `${item.start_year} – ${item.end_year ?? 'Present'}`;
       node.querySelector('.accomplishment').textContent = item.accomplishment;
+      if (item.url) {
+        const url = node.querySelector('.item-url');
+        const link = url.querySelector('a');
+        link.textContent = item.url;
+        // Only web addresses become clickable links in the shared resume.
+        if (/^https?:\/\//i.test(item.url)) link.href = item.url;
+        url.hidden = false;
+      }
       if (item.image) {
         node.querySelector('.experience-media').hidden = false;
         const image = node.querySelector('.experience-image');
@@ -234,6 +242,7 @@ form.addEventListener('submit', async (event) => {
   const data = Object.fromEntries(new FormData(form));
   if (!data.end_year) delete data.end_year;
   if (!data.image) delete data.image;
+  if (!data.url) delete data.url;
   const isEditing = editingId !== null;
   const url = isEditing ? `/api/resume-item?id=${encodeURIComponent(editingId)}` : '/api/resume-item';
   setBusy(true);

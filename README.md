@@ -37,6 +37,8 @@ PUT uses `findOneAndReplace` to validate and replace the document while preservi
 
 Include the current `image` ID in PUT to retain it; omit it to remove the image reference. The form does this automatically. Deleting or replacing an experience does not immediately delete its image bytes.
 
+Resume items also accept an optional `url` string with no character limit. The form uses a native `type="url"` input. Saved URLs appear below the accomplishment, with HTTP and HTTPS addresses rendered as links; items without a URL hide that line. Include the current URL in PUT to keep it, or omit it to remove it.
+
 Example request body:
 
 ```json

@@ -42,17 +42,23 @@
           <span class="error" id="accomplishment-error"></span>
         </div>
         <div class="field">
+          <label for="url">URL <span class="optional">(optional)</span></label>
+          <input id="url" name="url" type="url" aria-describedby="url-error">
+          <span class="error" id="url-error"></span>
+        </div>
+        <div class="field">
           <label for="image-file">Image <span class="optional">(optional)</span></label>
-          <input id="image-file" type="file" accept="image/*" aria-describedby="image-help image-status">
-          <p id="image-help" class="image-help">Choose an image to crop to a square and upload immediately. Save the experience to keep it.</p>
+          <input id="image-file" type="file" accept="image/*" aria-describedby="image-status">
           <input id="image" name="image" type="hidden">
-          <canvas id="image-canvas" class="image-preview" width="640" height="640" role="img" aria-label="Cropped image preview" hidden></canvas>
-          <img id="saved-image" class="image-preview" width="640" height="640" alt="Current experience image" hidden>
+          <div class="image-controls">
+            <canvas id="image-canvas" class="image-preview" width="640" height="640" role="img" aria-label="Cropped image preview" hidden></canvas>
+            <img id="saved-image" class="image-preview" width="640" height="640" alt="Current experience image" hidden>
+            <button id="remove-image" class="secondary" type="button" hidden>Remove image</button>
+          </div>
           <p id="image-status" role="status" aria-live="polite"></p>
-          <button id="remove-image" class="secondary" type="button" hidden>Remove image</button>
         </div>
         <div class="form-actions">
-          <button type="submit">Add experience</button>
+          <button type="submit">Save</button>
           <button id="cancel-edit" class="secondary" type="button" hidden>Cancel edit</button>
         </div>
         <p id="form-status" role="status" aria-live="polite"></p>
@@ -60,13 +66,13 @@
     </section>
     <section class="resume" aria-labelledby="resume-heading">
       <header class="resume-header">
-        <p class="eyebrow">A shared example</p>
-        <h2 id="resume-heading">Your Name</h2>
-        <p>Professional experience</p>
+        <p class="eyebrow">Resume</p>
+        <h2 id="resume-heading">KitKat Catson</h2>
+        <p>Extraordinary Feline</p>
       </header>
       <div id="resume-status" role="status" aria-live="polite">Loading experiences…</div>
       <div id="resume-items"></div>
-      <footer class="resume-footer">Built with fictional data for a learning demo.</footer>
+      <footer class="resume-footer">This is an educational demo in the context of <a href="https://github.com/ixd-system-design/">IXD System Design</a> at Sheridan College.</footer>
     </section>
   </main>
   <template id="resume-item-template">
@@ -79,6 +85,7 @@
         <div class="experience-heading"><h3 class="job-title"></h3><p class="dates"></p></div>
         <p class="employer"></p>
         <p class="accomplishment"></p>
+        <p class="item-url" hidden><a></a></p>
         <div class="item-actions">
           <button class="edit-item secondary" type="button">Edit</button>
           <button class="delete-item secondary" type="button">Delete</button>
